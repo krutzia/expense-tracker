@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Expense Tracker — Dark</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0b1220" />
+</head>
+<body class="dark">
+  <main class="app">
+    <header class="app-header">
+      <div>
+        <h1>Expense Tracker</h1>
+        <p class="subtitle">Dark UI • Charts • Categories • Date • Filters</p>
+      </div>
+      <div class="header-meta">
+        <div class="balance-card">
+          <small>Your Balance</small>
+          <div id="balance">₹0.00</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <!-- Left: Add transaction + Filters + List -->
+      <aside class="left-col">
+        <!-- Add Transaction Card -->
+        <div class="card add-card">
+          <div class="card-head">
+            <h2>Add Transaction</h2>
+            <small class="muted">Income or Expense • Select category & date</small>
+          </div>
+
+          <form id="form" class="form">
+            <div class="row">
+              <input id="text" type="text" placeholder="Description (e.g., Lunch, Salary)" required />
+            </div>
+
+            <div class="row split">
+              <select id="type" aria-label="Type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+
+              <select id="category" aria-label="Category">
+                <option value="General">General</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Salary">Salary</option>
+                <option value="Entertainment">Entertainment</option>
+              </select>
+            </div>
+
+            <div class="row split">
+              <input id="amount" type="number" step="0.01" placeholder="Amount (₹)" required />
+              <input id="date" type="date" required />
+            </div>
+
+            <div class="row actions">
+              <button type="submit" class="btn primary">➕ Add</button>
+              <button type="button" id="clearAll" class="btn ghost">Clear All</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filters -->
+        <div class="card filters-card">
+          <h3>Filters</h3>
+          <div class="filter-row">
+            <input id="searchText" type="text" placeholder="Search description..." />
+            <select id="filterType">
+              <option value="all">All</option>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+            <select id="filterCategory">
+              <option value="all">All categories</option>
+              <option value="Food">Food</option>
+              <option value="Travel">Travel</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Salary">Salary</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="General">General</option>
+            </select>
+            <div class="row split">
+              <input id="fromDate" type="date" />
+              <input id="toDate" type="date" />
+            </div>
+            <div class="row">
+              <button id="resetFilters" class="btn small">Reset Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction History -->
+        <div class="card list-card">
+          <div class="card-head">
+            <h3>History</h3>
+            <small id="summary" class="muted">0 transactions</small>
+          </div>
+          <ul id="list" class="tx-list"></ul>
+        </div>
+      </aside>
+
+      <!-- Right: Dashboard -->
+      <section class="right-col">
+        <div class="card stats-card">
+          <div class="stats-grid">
+            <div class="stat">
+              <small>Income</small>
+              <div id="income" class="stat-value plus">₹0.00</div>
+            </div>
+            <div class="stat">
+              <small>Expense</small>
+              <div id="expense" class="stat-value minus">₹0.00</div>
+            </div>
+            <div class="stat">
+              <small>Transactions</small>
+              <div id="txCount" class="stat-value">0</div>
+            </div>
+            <div class="stat">
+              <small>Categories</small>
+              <div id="catCount" class="stat-value">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <h3>Spending by Category (Expenses)</h3>
+          <canvas id="pieChart" height="220"></canvas>
+        </div>
+
+        <div class="card chart-card">
+          <h3>Monthly Income vs Expense (Last 6 months)</h3>
+          <canvas id="barChart" height="220"></canvas>
+        </div>
+      </section>
+    </section>
+
+    <footer>
+  <p>Created with ❤️ by <strong>krutzia</strong></p>
+</footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
